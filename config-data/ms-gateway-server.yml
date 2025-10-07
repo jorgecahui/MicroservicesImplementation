@@ -30,7 +30,7 @@ spring:
             - id: ms-producto
               uri: lb://ms-producto
               predicates:
-                - Path=/producto/**
+                - Path=/productos/**
               # Si tu servicio real no expone /categoria/...:
               # filters:
               #   - StripPrefix=1
