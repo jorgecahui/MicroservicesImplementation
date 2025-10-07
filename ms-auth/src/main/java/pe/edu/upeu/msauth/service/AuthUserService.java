@@ -1,8 +1,8 @@
 package pe.edu.upeu.msauth.service;
 
 import pe.edu.upeu.msauth.dto.AuthUserDto;
-import pe.edu.upeu.msauth.dto.TokenDto;
 import pe.edu.upeu.msauth.entity.AuthUser;
+import pe.edu.upeu.msauth.entity.TokenDto;
 
 public interface AuthUserService {
     public AuthUser save(AuthUserDto authUserDto);

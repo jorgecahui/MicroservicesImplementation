@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upeu.msauth.dto.AuthUserDto;
-import pe.edu.upeu.msauth.dto.TokenDto;
 import pe.edu.upeu.msauth.entity.AuthUser;
+import pe.edu.upeu.msauth.entity.TokenDto;
 import pe.edu.upeu.msauth.service.AuthUserService;
 
 @RestController

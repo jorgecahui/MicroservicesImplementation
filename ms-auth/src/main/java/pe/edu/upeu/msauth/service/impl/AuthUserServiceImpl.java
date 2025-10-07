@@ -3,12 +3,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upeu.msauth.dto.AuthUserDto;
-import pe.edu.upeu.msauth.dto.TokenDto;
 import pe.edu.upeu.msauth.entity.AuthUser;
+import pe.edu.upeu.msauth.entity.TokenDto;
 import pe.edu.upeu.msauth.repository.AuthUserRepository;
 import pe.edu.upeu.msauth.security.JwtProvider;
 import pe.edu.upeu.msauth.service.AuthUserService;
 import java.util.Optional;
+
 @Service
 public class AuthUserServiceImpl implements AuthUserService {
     @Autowired
@@ -42,8 +43,6 @@ public class AuthUserServiceImpl implements AuthUserService {
             return new TokenDto(jwtProvider.createToken(user.get()));
         return null;
     }
-
-
 
 
     @Override

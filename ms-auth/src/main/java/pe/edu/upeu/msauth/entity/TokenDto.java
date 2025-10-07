@@ -1,10 +1,9 @@
-package pe.edu.upeu.msauth.dto;
+package pe.edu.upeu.msauth.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,3 +12,4 @@ import lombok.NoArgsConstructor;
 public class TokenDto {
     private String token;
 }
+
