@@ -9,7 +9,7 @@ import pe.edu.upeu.msproducto.dto.ProductoDto;
 import java.util.List;
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/productos")
 public class ProductoController {
     @Autowired
     ProductoService productoService;
