@@ -1,19 +1,30 @@
 server:
   port: 8082
+
 spring:
   application:
     name: ms-producto
 
   datasource:
-    url: jdbc:mysql://localhost:3306/ms_producto1
-    username: root
-    password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/ms_producto1
+    username: postgres
+    password: "123456"
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  sql:
+    init:
+      platform: postgresql
 
 springdoc:
   api-docs:
@@ -21,6 +32,7 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /doc/swagger-ui.html
+
 eureka:
   client:
     serviceUrl:
@@ -28,14 +40,15 @@ eureka:
   instance:
     hostname: localhost
 
-resilience4j.circuitbreaker:
-  instances:
-    categoriaListarPorIdCB:
-      registerHealthIndicator: true
-      slidingWindowSize: 10
-      permittedNumberOfCallsInHalfOpenState: 3
-      slidingWindowType: TIME_BASED
-      minimumNumberOfCalls: 4
-      waitDurationInOpenState: 5s
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
+resilience4j:
+  circuitbreaker:
+    instances:
+      categoriaListarPorIdCB:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: TIME_BASED
+        minimumNumberOfCalls: 4
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
