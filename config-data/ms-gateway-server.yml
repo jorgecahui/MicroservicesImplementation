@@ -16,21 +16,27 @@ spring:
 
   cloud:
     gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
-          routes:
-            - id: ms-catalogo
-              uri: lb://ms-catalogo
-              predicates:
-                - Path=/categoria/**
-            - id: ms-producto
-              uri: lb://ms-producto
-              predicates:
-                - Path=/productos/**
-              # Si tu servicio real no expone /categoria/...:
-              # filters:
-              #   - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: ms-catalogo
+          uri: lb://ms-catalogo
+          predicates:
+            - Path=/categoria/**
+          filters:
+            - AuthFilter
+
+        - id: ms-producto
+          uri: lb://ms-producto
+          predicates:
+            - Path=/productos/**
+          filters:
+            - AuthFilter
+
+        - id: ms-auth
+          uri: lb://ms-auth
+          predicates:
+            - Path=/auth/**
