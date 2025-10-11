@@ -4,16 +4,16 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import pe.edu.upeu.msproducto.dto.CatagoriaDto;
+import pe.edu.upeu.msproducto.dto.CategoriaDto;
 
 @FeignClient(name = "ms-catalogo", path = "/categoria")
 public interface CatalogoFeign {
     @GetMapping("/{id}")
     @CircuitBreaker(name = "categoriaListarPorIdCB", fallbackMethod = "fallbackCategoria")
-    public CatagoriaDto buscarPorId(@PathVariable Integer id);
+    public CategoriaDto buscarPorId(@PathVariable Integer id);
 
-    default CatagoriaDto fallbackCategoria(Integer id, Exception e) {
-        CatagoriaDto catagoriaDto = new CatagoriaDto();
+    default CategoriaDto fallbackCategoria(Integer id, Exception e) {
+        CategoriaDto catagoriaDto = new CategoriaDto();
         catagoriaDto.setId(9000000);
         catagoriaDto.setNombre("Servicio Categoria no disponible");
         return catagoriaDto;
