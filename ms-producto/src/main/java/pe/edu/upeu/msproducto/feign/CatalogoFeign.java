@@ -10,13 +10,14 @@ import pe.edu.upeu.msproducto.dto.CategoriaDto;
 public interface CatalogoFeign {
     @GetMapping("/{id}")
     @CircuitBreaker(name = "categoriaListarPorIdCB", fallbackMethod = "fallbackCategoria")
-    public CategoriaDto buscarPorId(@PathVariable Integer id);
+    CategoriaDto buscarPorId(@PathVariable("id") Integer id);
 
-    default CategoriaDto fallbackCategoria(Integer id, Exception e) {
-        CategoriaDto catagoriaDto = new CategoriaDto();
-        catagoriaDto.setId(9000000);
-        catagoriaDto.setNombre("Servicio Categoria no disponible");
-        return catagoriaDto;
+    default CategoriaDto fallbackCategoria(Integer id, Throwable e) {
+        CategoriaDto categoriaDto = new CategoriaDto();
+        categoriaDto.setId(0);
+        categoriaDto.setNombre("Servicio de Categoría no disponible");
+        categoriaDto.setDescripcion("No se pudo obtener la información de la categoría con id " + id);
+        return categoriaDto;
     }
 
 }
