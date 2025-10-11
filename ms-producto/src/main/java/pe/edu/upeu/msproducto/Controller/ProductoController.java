@@ -25,18 +25,18 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Producto guardar(Producto producto) {
+    public Producto guardar(@RequestBody Producto producto) {
         return productoService.guardar(producto);
     }
 
     @PutMapping
-    public Producto actualizar(Producto producto) {
+    public Producto actualizar(@RequestBody Producto producto) {
         return productoService.actualizar(producto);
     }
 
     @DeleteMapping("/{id}")
     public String eliminar(@PathVariable Integer id) {
         productoService.borrarPorId(id);
-        return "Producto pe.edu.upeu.msproducto.Entity.Producto";
+        return "Producto eliminado correctamente";
     }
 }
